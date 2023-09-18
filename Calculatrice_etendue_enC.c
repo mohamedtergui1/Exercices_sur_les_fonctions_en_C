@@ -10,10 +10,7 @@ float sqart(float a,float b);
 
 
 
-int menu4(  int n ,int tab[n] );
-int max(int n,int tab[n]);
-int min(int n,int tab[n]);
-int moyen(int n,int tab[n]);
+
 
 
 int main()
@@ -46,64 +43,47 @@ void menu3(){
     printf("3-trouver le moyenne\n");
     printf("Entrez votre choix : ");
     scanf("%d", &n);
-    int result;
+    int result=-100000000;
 
-    if (n == 1)
-        result = max(n, tab[n]);
-    else if (n == 2)
-        result = min(n, tab[n]);
-    else if (n == 3)
-        result = moyen(n, tab[n]);
-    else
+    if (n == 1){
+
+       for(int i=0;i<n;i++){
+
+        if(compare(result,tab[i])<0)
+            result=tab[i];
+       }
+    }
+    else if (n == 2){
+       for(int i=0;i<n;i++){
+
+        if(compare(result,tab[i])>0)
+            result=tab[i];
+       }
+    }
+    else if (n == 3){
+       result=0;
+          for(int i=0;i<n;i+=2){
+            result += some(tab[i] ,tab[i+1] );
+
+           }
+    }
+      else
         printf("Choix invalide!!!\n");
 
-    printf("Le r�sultat est : %d\n", result);
+    printf("Le resultat est : %d\n", result);
     menu1();
-}
-
-
-
-
-
-int max(int n,int tab[n]){
-    int max =tab[0];
-     for (int i=1;i<n;i++){
-        if (tab[i]>max)
-            max=tab[i];
-     }
-     return max ;
-}
-
-
-
-
-
-
-int min(int n,int tab[n]){
-    int  min = tab[0];
-     for (int i=1;i<n;i++){
-
-        if (tab[i]<min)
-            min=tab[i];
-     }
-     return min ;
-}
-
-
-int moyen(int n, int tab[n]){
-  int   moyn=0;
-     for (int i=0;i<n;i++){
-
-       moyn+=tab[i];
-     }
-     return moyn/n ;
 
 }
 
 
+int some(int a,int b){
+ return a+b;
+}
 
 
-
+int compare(int a,int b){
+     return a-b ;
+}
 
 
 void menu2(){
